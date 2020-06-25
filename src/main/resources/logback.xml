@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+<!--<configuration>-->
+
+<!--    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">-->
+<!--        <layout class="ch.qos.logback.classic.PatternLayout">-->
+<!--            <Pattern>-->
+<!--                %d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n-->
+<!--            </Pattern>-->
+<!--        </layout>-->
+<!--    </appender>-->
+
+<!--    <appender name="DB" class="ch.qos.logback.classic.db.DBAppender">-->
+<!--        <connectionSource class="ch.qos.logback.core.db.DataSourceConnectionSource">-->
+<!--            <dataSource>-->
+<!--                &lt;!&ndash; Attribute configuration in DruidDataSource &ndash;&gt;-->
+<!--                <driverClassName>com.microsoft.sqlserver.jdbc.SQLServerDriver</driverClassName>-->
+<!--                <url>jdbc:sqlserver://localhost/SqlTest?useSSL=false</url>-->
+<!--                <username>SA</username>-->
+<!--                <password>Kkroal@5334</password>-->
+<!--            </dataSource>-->
+<!--        </connectionSource>-->
+<!--    </appender>-->
+
+<!--    <logger name="com.example.demo" level="debug"/>-->
+<!--    <logger name="com.example.demo" level="trace" additivity="false">-->
+<!--        <appender-ref ref="CONSOLE"/>-->
+<!--    </logger>-->
+
+<!--    <root level="error">-->
+<!--        <appender-ref ref="CONSOLE"/>-->
+<!--    </root>-->
+
+<!--    <root level="debug">-->
+<!--        <appender-ref ref="STDOUT"/>-->
+<!--        <appender-ref ref="DB" />-->
+<!--    </root>-->
+<!--</configuration>-->
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <timestamp key="bySecond" datePattern="yyyy-MM-dd'T'HH:mm:ss"/>
+    <!--    <appender name="FILE-ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+    <!--        <file>${LOG_FILE}</file>-->
+
+    <!--        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">-->
+    <!--            <fileNamePattern>logs/archived/app.%d{yyyy-MM-dd}.%i.log</fileNamePattern>-->
+    <!--            &lt;!&ndash; each archived file, size max 5KB &ndash;&gt;-->
+    <!--            <maxFileSize>5KB</maxFileSize>-->
+    <!--            &lt;!&ndash; total size of all archive files, if total size > 20KB,-->
+    <!--				it will delete old archived file &ndash;&gt;-->
+    <!--            <totalSizeCap>20KB</totalSizeCap>-->
+    <!--            &lt;!&ndash; 60 days to keep &ndash;&gt;-->
+    <!--            <maxHistory>60</maxHistory>-->
+    <!--        </rollingPolicy>-->
+
+    <!--        <encoder>-->
+    <!--            <pattern>%d %m%n</pattern>-->
+    <!--        </encoder>-->
+    <!--    </appender>-->
+
+    <!--    <appender name="FILE1" class="ch.qos.logback.core.FileAppender">-->
+    <!--        <file>src/main/resources/Master-${bySecond}.log</file>-->
+    <!--        <append>true</append>-->
+    <!--        <layout class="ch.qos.logback.classic.PatternLayout">-->
+    <!--            <Pattern>%d{yyyy-MM-dd HH:mm:ss} - %msg%n</Pattern>-->
+    <!--        </layout>-->
+    <!--    </appender>-->
+
+    <appender name = "DB" class="ch.qos.logback.classic.db.DBAppender">
+        <connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">
+<!--            <dataSource class="com.microsoft.sqlserver.jdbc.SQLServerDriver">-->
+            <driverClass>com.microsoft.sqlserver.jdbc.SQLServerDriver</driverClass>
+            <url>jdbc:sqlserver://localhost:1433;databaseName=master</url>
+            <user>SA</user>
+            <password>Kkroal@5334</password>
+<!--            <param name="dialect" value="MsSql_DIALECT" />-->
+<!--            </dataSource>-->
+        </connectionSource>
+    </appender>
+
+<!--    <appender name="FILE2" class="ch.qos.logback.core.FileAppender">-->
+<!--        <file>src/main/resources/Job-${bySecond}.log</file>-->
+<!--        &lt;!&ndash;        <append>true</append>&ndash;&gt;-->
+<!--        <layout class="ch.qos.logback.classic.PatternLayout">-->
+<!--            <Pattern>%d{yyyy-MM-dd HH:mm:ss} - %msg%n</Pattern>-->
+<!--        </layout>-->
+<!--    </appender>-->
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                %d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n
+            </Pattern>
+        </layout>
+    </appender>
+
+    <!--    <logger name="com.example.demo" additivity="false" level="trace">-->
+    <!--        <appender-ref ref="FILE1"/>-->
+    <!--    </logger>-->
+
+    <logger name="com.example.demo" additivity="false" level="trace">
+        <appender-ref ref="DB" />
+    </logger>
+
+    <logger name="com.example.demo" level="trace" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
+    <root level="error">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+
+
+
+</configuration>

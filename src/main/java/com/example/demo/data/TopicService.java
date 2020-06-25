@@ -1,16 +1,18 @@
 package com.example.demo.data;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 @Service
 public class TopicService {
-	
+
+	Logger logger = LoggerFactory.getLogger(TopicService.class);
 	@Autowired
 	private TopicRepository topicRepository;
 
@@ -24,6 +26,7 @@ public class TopicService {
 		List<Topic> topics = new ArrayList<>();
 		topicRepository.findAll()
 		.forEach(topics::add);
+		logger.trace("0MAT_PLANT_ATTR-5eda72059ff7a66854f1d12b-All topics retrieved : Completed ");
 		return topics;
 	}
 	
