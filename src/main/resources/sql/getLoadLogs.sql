@@ -1,1 +1,0 @@
-select * from dbo.LOGS l where l.INSTANCE_ID = :instance_id
