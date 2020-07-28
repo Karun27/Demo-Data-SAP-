@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 public class CustomStartTimeSerializer extends StdSerializer<Date> {
 
@@ -21,7 +22,7 @@ public class CustomStartTimeSerializer extends StdSerializer<Date> {
     @Override
     public void serialize(Date date, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
         DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-//        dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+        dateFormat.setTimeZone(TimeZone.getTimeZone("Eastern Standard Time"));
 
         jsonGenerator.writeString(dateFormat.format(date));
     }

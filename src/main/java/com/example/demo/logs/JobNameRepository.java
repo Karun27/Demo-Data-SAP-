@@ -15,6 +15,6 @@ public interface JobNameRepository extends JpaRepository<UniqLogs, String> {
 
     @Transactional
     @Query(value = "select DISTINCT l.job_name from dbo.LOGS l ", nativeQuery = true)
-    List<JobName> getJobName();
+    List<String> getJobName();
 
 }
